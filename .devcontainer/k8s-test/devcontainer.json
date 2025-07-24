@@ -1,0 +1,43 @@
+{
+  "name": "ODA Canvas Kubernetes Test",
+ "image": "mcr.microsoft.com/devcontainers/base:bullseye",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}, // to run minikube in docker
+    "ghcr.io/devcontainers/features/azure-cli:1": {},
+    "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
+      // TODO: add kubectl version, same as in prod AKS cluster
+    },
+    "ghcr.io/audacioustux/devcontainers/k9s:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers-extra/features/argo-cd:1": {
+      // TODO: add argocd version, sames as in prod AKS cluster
+    },
+    "ghcr.io/audacioustux/devcontainers/cilium:1": {
+      // TODO: add cilium version, same as in prod AKS cluster
+    },
+    "ghcr.io/goldsam/dev-container-features/flux2:1": {
+      // TODO: add flux version, same as in prod AKS cluster. Only used for CDRs?
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-azuretools.vscode-docker",
+        "ms-kubernetes-tools.vscode-kubernetes-tools",
+        "redhat.vscode-yaml",
+        "ms-vscode-remote.remote-containers",
+        "DavidAnson.vscode-markdownlint"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+  //"workspaceFolder": "/workspaces",
+  "remoteUser": "vscode",
+  "mounts": [
+    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached",
+//    "source=${localWorkspaceFolder},target=/workspaces,type=bind,consistency=cached"
+  ]
+ // ,"postCreateCommand": "/workspaces/.devcontainer/post-create.sh"
+}
